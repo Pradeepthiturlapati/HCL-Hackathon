@@ -1,4 +1,6 @@
-﻿namespace SocialAppAPI.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace SocialAppAPI.Models
 {
     public class Notification
     {
