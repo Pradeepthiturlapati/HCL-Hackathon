@@ -26,6 +26,21 @@ namespace SocialAppAPI.Data
         public DbSet<Notification> Notifications { get; set; }
 
         public DbSet<Report> Reports { get; set; }
+        // Optional: Configure relationships
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            // Prevent duplicate likes
+            modelBuilder.Entity<Like>()
+                .HasIndex(l => new { l.PostId, l.UserId })
+                .IsUnique();
+
+            // Prevent duplicate friend requests
+            modelBuilder.Entity<FriendRequest>()
+                .HasIndex(fr => new { fr.SenderId, fr.ReceiverId })
+                .IsUnique();
+        }
     }
 
 }

@@ -1,9 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SocialAppAPI.Models
 {
     public class FriendRequest
     {
+        [Key]
         public int RequestId { get; set; }
 
         public int SenderId { get; set; }
@@ -14,9 +16,6 @@ namespace SocialAppAPI.Models
         // Pending / Accepted / Rejected
 
         public DateTime CreatedAt { get; set; } = DateTime.Now;
-            [ForeignKey("SenderId")]
-            public User sender { get; set; }
-            [ForeignKey("ReceiverId")]
-            public User receiver { get; set; }
+        
     }
 }
